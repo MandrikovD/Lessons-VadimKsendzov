@@ -1,0 +1,48 @@
+1 ) pwd
+2) mkdir DimaTest1
+3) cd c:/Users/user/DimaTest1
+4) mkdir Test1 Test2 Test3
+5) cd c:/Users/user/DimaTest1/Test1
+6) touch test1.txt test2.txt text3.txt test4.json test5.json
+7) mkdir Test4 Test5 Test6
+8) ls -l
+9) nano test1.txt
+10) привет
+как дела?
+что нового?
+работу работаем
+11) ctrl+0 enter. ctrl+x
+12) cd ..
+13) cd c:/users/user/DimaTest1/test1
+mv test1.txt /c/users/user/DimaTest1/Test2
+mv test2.txt /c/users/user/DimaTest1/Test2
+14) cd c:/users/user/DimaTest1/Test2
+cp test1.txt /c/users/user/DimaTest1/Test3
+cp test2.txt /c/users/user/DimaTest1/Test3
+15) find -name "test1*"
+16) grep ".*" ./*
+17) head -2 /c/users/user/DimaTest1/test2/test1.txt
+18) tail -2 /c/users/user/DimaTest1/test2/test1.txt
+19) less test1.txt
+20) date
+
+curl https://api.quarantine.country/api/v1/regions
+curl -X PUT https://api/quarantine.country.api/v1/regions
+
+skript
+pwd
+touch sktipt.txt
+nano skript.txt
+#!/bin/bash
+cd c:/users/user/DimaTest1
+mkdir skript1 skript2 skript3
+cd c:/users/user/DimaTest1/skript1
+touch skript1.txt skript2.txt skript3.txt
+touch skript4.json skript5.json
+mkdir skript4 skript5 skript6
+ls -l
+mv skript1.txt /c/users/user/DimaTest1/skript1/skript6
+mv skript2.txt /c/users/user/DimaTest1/skript1/skript6
+ctrl+0 enter. ctrl+x
+chmod +x ./skript.txt
+./skript.txt
