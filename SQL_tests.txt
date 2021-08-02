@@ -1,0 +1,221 @@
+https://www.w3schools.com/sql/exercise.asp?filename=exercise_database7
+
+#1
+Select model, speed, hd
+from PC
+where price <500
+
+#2
+SELECT maker 
+FROM Product 
+WHERE type = 'Printer' group by maker
+
+#3
+Select model, ram, screen
+from laptop
+where price >1000
+
+#4
+Select *
+from printer
+where color = 'y'
+
+#5
+Select model, speed, hd
+from PC
+where (cd='12x' or cd='24x') and price<600
+
+#6
+Select distinct product.maker, laptop.speed
+from laptop
+join product ON product.model = laptop.model
+where hd >= 10
+
+#7
+Select DISTINCT product.model, pc.price
+FROM Product 
+JOIN pc 
+ON product.model = pc.model 
+WHERE maker = 'B'
+UNION
+Select DISTINCT product.model, laptop.price
+FROM product 
+JOIN laptop 
+ON product.model=laptop.model 
+WHERE maker='B'
+UNION
+Select DISTINCT product.model, printer.price
+FROM product 
+JOIN printer 
+ON product.model=printer.model 
+WHERE maker='B'
+
+#8
+Select DISTINCT maker
+From product
+Where type = 'pc'
+Except
+Select DISTINCT maker
+From product
+Where type = 'laptop'
+
+#9
+Select Distinct maker
+from pc
+join product 
+on pc.model = product.model
+where speed >=450
+
+#10
+Select model, price
+from printer
+where price = 
+(select max(price)
+from printer)
+
+#11
+Select avg(speed)
+from pc
+
+#12
+Select avg(speed)
+from laptop
+where price >1000
+
+#13
+Select avg(speed) as AvgSpeed
+from pc, product
+where pc.model=product.model and product.maker='a'
+
+#14
+Select s.class, s.name, c.country
+from Ships s
+left join classes c on s.class = c.class
+Where c.numGuns >=10
+
+#15
+Select hd
+from pc
+group by (hd)
+having count(model) >=2
+
+#16
+Select Distinct a1.model, a2.model, a1.speed, a1.ram
+From pc a1, pc a2
+Where a1.speed = a2.speed AND a1.ram = a2.ram AND a1.model > a2.model
+
+#17
+Select Distinct pc.type, pc.model, l.speed
+From Laptop l
+Join Product PC On l.model=pc.model
+Where l.speed<(select min(speed)
+from pc)
+
+#18
+Select Distinct product.maker, printer.price
+From Product, Printer
+Where product.model=printer.model
+And printer.color = 'y'
+And printer.price = 
+(Select min(price)
+From Printer
+Where printer.color = 'y')
+
+#19
+Select product.maker, AVG(screen)
+From Laptop
+Left Join product on product.model = laptop.model
+Group By product.maker
+
+#20
+Select maker, Count(model)
+From Product
+Where type = 'pc'
+Group By product.maker
+Having Count (Distinct model) >= 3
+
+#21
+Select maker, Max(price)
+From Product, PC
+Where product.model = pc.model
+Group By product.maker
+
+#22
+Select speed, AVG(price)
+From PC
+Where speed>600
+Group By pc.speed
+
+#23
+Select Distinct maker
+From product a1 
+Join pc a2 On a1.model=a2.model
+Where speed>=750 And maker In 
+(Select maker
+From product a1 Join laptop a2 On a1.model=a2.model
+Where speed>=750)
+
+#24
+Select model
+From 
+    (Select model, price
+     From pc
+     Union
+     Select model, price
+     From Laptop
+     Union
+     Select model, price
+     From Printer) 
+a1
+Where price = (
+ Select Max(price)
+ From 
+(Select price
+  From pc
+  Union
+  Select price
+  From Laptop
+  Union
+  Select price
+  From Printer) 
+a2
+ )
+
+#25
+Select Distinct maker
+From product
+Where model In 
+(
+Select model
+From pc
+Where ram = 
+  (
+  Select Min(ram)
+  From pc
+  )
+And speed = 
+  (Select Max(speed)
+  From pc
+  Where ram = 
+    (Select Min(ram)
+     From pc)
+  )
+)
+And
+maker In 
+(
+Select maker
+From product
+Where type='printer'
+)
+
+#26
+Select sum(a.price)/sum(a.kol) as sredn 
+From
+(Select price,1 as kol 
+ From pc,product
+ Where pc.model=product.model And product.maker='A'
+ Union all
+ Select price,1 as kol FROM laptop,product
+ Where laptop.model=product.model And product.maker='A') 
+as s
